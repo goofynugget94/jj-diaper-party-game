@@ -48,6 +48,18 @@
 
   const advHtml = e => `<p class="advice ${e.advice.length > 180 ? "long" : ""}">“${esc(e.advice)}”</p>`;
 
+  // Everyone who sent something, alphabetical (so the order doesn't give hints).
+  // Someone is crossed off once all of their entries have been revealed.
+  function choicesHtml() {
+    const doneKeys = new Set(state.order.slice(0, state.pos));
+    const people = [...new Set(entries.map(e => e.from))].sort((a, b) => a.localeCompare(b));
+    const chips = people.map(n => {
+      const used = entries.filter(e => e.from === n).every(e => doneKeys.has(e.key));
+      return `<span class="pill ${used ? "used" : ""}">${esc(n)}</span>`;
+    }).join("");
+    return `<div class="choices"><div class="label">Who could it be?</div>${chips}</div>`;
+  }
+
   function renderStart() {
     const noName = entries.filter(e => !e.name).length;
     stage.innerHTML = `<div class="card">
@@ -67,6 +79,7 @@
     stage.innerHTML = `<div class="card">
       <div class="label">The advice</div>${advHtml(e)}
       <div class="hint">JJ, who sent this? 🤔</div>
+      ${choicesHtml()}
       <div class="row">
         <button class="good" id="ok">✅ Got it!</button>
         <button class="bad" id="no">❌ Wrong / Stumped</button>
@@ -82,6 +95,7 @@
       <div class="label">The advice</div>${advHtml(e)}
       <div class="clue"><div class="label">${esc(e.clueLabel || "Name suggestion clue")}</div><div class="big ${e.clueLabel ? "text" : ""}">${esc(e.name)}</div></div>
       <div class="hint">Take another guess, JJ! 🕵️</div>
+      ${choicesHtml()}
       <div class="row">
         <button class="good" id="ok">✅ Got it!</button>
         <button class="bad" id="no">❌ Still wrong</button>
