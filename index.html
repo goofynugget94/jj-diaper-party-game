@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who Said It? – JJ's Diaper Party</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="title">👶 Who Said It?</div>
+  <div class="scoreboard">
+    <div class="chip good"><span id="sFirst">0</span><small>No clue</small></div>
+    <div class="chip mid"><span id="sClue">0</span><small>After name</small></div>
+    <div class="chip bad"><span id="sWrong">0</span><small>Missed</small></div>
+  </div>
+</header>
+
+<main id="stage"></main>
+
+<footer>
+  <span id="progress"></span>
+  <span class="spacer"></span>
+  <button class="ghost" id="undoBtn">↶ Undo</button>
+  <button class="ghost" id="resetBtn">Reset game</button>
+</footer>
+
+<script src="entries.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
