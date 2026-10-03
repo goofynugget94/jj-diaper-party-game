@@ -69,3 +69,11 @@ footer { display: flex; align-items: center; gap: 10px; padding: 12px 28px; }
 .stats div { min-width: 150px; }
 .pending { background: #eef; border-radius: 12px; padding: 10px; margin-top: 14px; font-size: 1rem; }
 .clue .big.text { font-size: clamp(1.1rem, 2.3vw, 1.7rem); font-weight: 600; line-height: 1.35; }
+
+.choices { margin: 0 0 24px; }
+.choices .label { margin-bottom: 10px; }
+.pill {
+  display: inline-block; margin: 4px; padding: 8px 18px; border-radius: 999px;
+  background: #e8f0ff; border: 2px solid var(--blue); font-weight: 700; font-size: 1.15rem;
+}
+.pill.used { opacity: .3; text-decoration: line-through; border-color: #999; background: #eee; }
